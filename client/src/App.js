@@ -1,7 +1,7 @@
 import React from 'react';
 import socket from './socket'
 import reducer from './reducer'
-import './App.css';
+import './styles/App.scss';
 import JoinBlock  from './components/JoinBlock';
 import Chat from './components/Chat';
 
@@ -54,12 +54,6 @@ React.useEffect(() => {
     <div className="App">
       <div className="Wrapper">
         {!state.entered ? <JoinBlock  onLogin={onLogin}/>:<Chat state={state} />}
-        
-
-
-        {/* <div>messages here</div>
-        <Input placeHolder={'type your message here'} size={'middle'} />
-      <Button type="primary" style={{ marginLeft: 8 }} onClick={connectSocket}>Connect</Button> */}
       </div>
     </div>
   );
