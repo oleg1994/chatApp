@@ -1,26 +1,66 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Button, DatePicker } from "antd";
-import "antd/dist/antd.css";
+import socket from './socket'
+import reducer from './reducer'
 import './App.css';
+import JoinBlock  from './components/JoinBlock';
+import Chat from './components/Chat';
 
 function App() {
+  const [state, dispatch] = React.useReducer(reducer, {
+    entered:false,
+    roomId:null,
+    userName:null,
+    users:[],
+    messages:[]
+  });
+
+  const onLogin = (userData)=>{
+    console.log(userData)
+    dispatch({
+      type: 'ENTERED',
+      payload:userData
+    })
+    socket.emit('ROOM:JOIN', userData)
+  }
+
+  const setUsers = (users) =>{
+    dispatch({
+      type:'SET_USERS',
+      payload:users
+    })
+  }
+
+React.useEffect(() => {
+  socket.on('ROOM:SET_USERS',setUsers)
+  socket.on('ROOM:NEW_MESSAGE',message=>{
+      dispatch({
+        type:'NEW_MESSAGE',
+        payload:message,
+      })
+  })
+  socket.on('ROOM:EXISTING_MESSAGES',messages=>{
+    console.log([...messages])
+      dispatch({
+        type:'EXISTING_MESSAGES',
+        payload:messages,
+      })
+  })
+
+
+}, [])
+  
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          <Button type="primary" style={{ marginLeft: 8 }}>hello</Button>
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="Wrapper">
+        {!state.entered ? <JoinBlock  onLogin={onLogin}/>:<Chat state={state} />}
+        
+
+
+        {/* <div>messages here</div>
+        <Input placeHolder={'type your message here'} size={'middle'} />
+      <Button type="primary" style={{ marginLeft: 8 }} onClick={connectSocket}>Connect</Button> */}
+      </div>
     </div>
   );
 }
