@@ -1,0 +1,118 @@
+.message {
+  $self: &;
+  display: flex;
+
+  &__avatar {
+    display: flex;
+    flex-direction: column-reverse;
+    img {
+      border-radius: 50px;
+      width: 33px;
+      height: 33px;
+      margin-right: 13px;
+      margin-bottom: 5px;
+    }
+  }
+  &__bubble {
+    background: rgb(104, 104, 230);
+    box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.196733);
+    border-radius: 12px 12px 12px 0px;
+    padding: 15px;
+    margin-bottom: 6px;
+  }
+  &__date {
+    font-size: 12px;
+    opacity: 0.4;
+  }
+  &__text {
+    color: #fff;
+    margin: 0;
+  }
+  &__attachments{
+      display: flex;
+      &__item{
+          img{
+              width: 45px;
+              height: 45px;
+              border-radius: 8px;
+              margin:2px;
+              cursor: pointer;
+          }
+      }
+  }
+
+  &--ismine {
+    display: flex;
+    flex-direction: row-reverse;
+
+    #{$self}__content {
+    }
+
+
+    #{$self}__avatar {
+      img {
+        margin-right: 0;
+        margin-left: 13px;
+      }
+    }
+    #{$self}__bubble {
+      background: rgb(237, 237, 241);
+      border: 1px solid #eeccee;
+      box-shadow: 0px 5px 5px rgba(54, 116, 255, 0.220444);
+      border-radius: 12px 12px 0px 12px;
+
+      #{$self}__text {
+        color: var(--black);
+      }
+    }
+  }
+
+  &--image{
+    #{$self}__attachments{
+      &__item{
+        img{
+          width: 150px;
+          height: 150px;
+        }
+      }
+    }
+  }
+
+
+
+
+  &__istyping{
+    span {
+      height: 8px;
+      width: 8px;
+      border-radius: 50%;
+      background: rgb(48, 43, 43);
+      display: inline-block;
+      margin-right: 8px;
+      animation: 0.8s typingAnimation infinite ease-out 0.1s;
+
+      &:nth-of-type(2) {
+        animation: 0.8s typingAnimation infinite ease-out 0.2s;
+      }
+      &:nth-of-type(3) {
+        animation: 0.8s typingAnimation infinite ease-out 0.3s;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@keyframes typingAnimation {
+  from {
+    opacity: 0.2;
+    transform: translateY(0px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-1.5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-1px);
+  }
+}

@@ -1,24 +1,33 @@
 @import '~antd/dist/antd.css';
-.App {
-  text-align: center;
+
+body, html, #root, .wrapper{
+  height: 100%;
+  box-sizing: border-box;
+  --pColor:#ADADAD;
+  --black:#202020;
+}
+
+
+// .App {
+//   text-align: center;
   
-}
-.Wrapper {
-  max-width:40%;
-  min-width: 720px;
-  margin:auto;
-}
-.chat{
-  display: flex;
-  flex-direction: column;
-}
-.chat_users{
-}
-.chat_block{
-  min-height: 400px;
-  max-height: 400px;
-  overflow: auto;
-}
-.chat__message{
-  width: fit-content;
-}
+// }
+// .Wrapper {
+//   max-width:40%;
+//   min-width: 720px;
+//   margin:auto;
+// }
+// .chat{
+//   display: flex;
+//   flex-direction: column;
+// }
+// .chat_users{
+// }
+// .chat_block{
+//   min-height: 400px;
+//   max-height: 400px;
+//   overflow: auto;
+// }
+// .chat__message{
+//   width: fit-content;
+// }
