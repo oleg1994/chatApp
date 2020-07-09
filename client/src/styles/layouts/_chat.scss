@@ -1,0 +1,103 @@
+.chat {
+  box-sizing: border-box;
+  display: flex;
+  background-color: #fff;
+  width: 1140px;
+  height: 100%;
+  margin: 0 auto;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.04204);
+  &__dialogs {
+    height: calc(100% - 160px);
+    width: 320px;
+    border-right: 1px solid #f7f7f7;
+    &-header {
+      height: 74px;
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #f7f7f7;
+      & > div {
+        & > span {
+          margin-left: 6px;
+        }
+      }
+      & > span {
+        display: inline-block;
+        margin-right: 5px;
+        border: 2px solid rgb(165, 160, 160);
+        padding: 4px;
+        border-radius: 8px;
+      }
+    }
+    &-search {
+      padding: 20px;
+      span {
+        background: #f7f8f9;
+        border: none;
+        input {
+          height: 30px;
+          background: #f7f8f9;
+          border: none;
+        }
+      }
+    }
+
+    &-list {
+      padding: 10px;
+    }
+  }
+  &__messages {
+    width: 100%;
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px;
+      border-bottom: 1px solid #f7f7f7;
+      &-center {
+        text-align: center;
+
+        .status {
+          color: #bfbfbf;
+          position: relative;
+          &::before {
+            display: block;
+            position: absolute;
+            top: 8px;
+            left: -11px;
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 30px;
+            background-color: #d3d3d3;
+          }
+          &--online {
+            &::before {
+              background-color: #00c980;
+            }
+          }
+        }
+      }
+
+      &-username {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+      }
+    }
+
+    &-conversation {
+      position: relative;
+      .ant-empty{
+        position: absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+      }
+      padding: 30px;
+      overflow: auto;
+      height: calc(100% - 150px);
+    }
+  }
+}

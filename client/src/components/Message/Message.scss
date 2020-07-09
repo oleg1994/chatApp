@@ -1,11 +1,24 @@
 .message {
   $self: &;
   display: flex;
+  margin-bottom: 20px;
+
+  &__content{
+  }
+
+
 
   &__avatar {
     display: flex;
     flex-direction: column-reverse;
     img {
+      border-radius: 50px;
+      width: 33px;
+      height: 33px;
+      margin-right: 13px;
+      margin-bottom: 5px;
+    }
+    div {
       border-radius: 50px;
       width: 33px;
       height: 33px;
@@ -28,29 +41,81 @@
     color: #fff;
     margin: 0;
   }
-  &__attachments{
-      display: flex;
-      &__item{
-          img{
-              width: 45px;
-              height: 45px;
-              border-radius: 8px;
-              margin:2px;
-              cursor: pointer;
-          }
+  &__attachments {
+    display: flex;
+    &__item {
+      img {
+        width: 45px;
+        height: 45px;
+        border-radius: 8px;
+        margin: 2px;
+        cursor: pointer;
       }
+    }
+  }
+  &--is-audio {
+    audio{
+      display: none;
+    }
+
+
+    #{$self}__bubble {
+      width: 250px;
+      position: relative;
+      overflow: hidden;
+    }
+    #{$self}__audio {
+      &-info{
+        display:flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
+      &-btn{
+        div{
+          cursor: pointer;
+          border:none;
+          background:rgb(4, 58, 235);
+          width: 28px;
+          height: 28px;
+          border-radius: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img{
+            height: 20px;
+          }
+        }
+      }
+      &-file{
+      }
+      &-duration{
+        color:#fff;
+        font-weight: 500;
+        opacity: 0.5;
+      }
+      &-progress{
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top:0;
+        background:darkblue;
+        border-right:2px solid darkgoldenrod;
+        transition: width 0.3s ease;
+      }
+    }
   }
 
   &--ismine {
     display: flex;
     flex-direction: row-reverse;
 
-    #{$self}__content {
-    }
-
-
     #{$self}__avatar {
       img {
+        margin-right: 0;
+        margin-left: 13px;
+      }
+      div {
         margin-right: 0;
         margin-left: 13px;
       }
@@ -67,10 +132,10 @@
     }
   }
 
-  &--image{
-    #{$self}__attachments{
-      &__item{
-        img{
+  &--image {
+    #{$self}__attachments {
+      &__item {
+        img {
           width: 150px;
           height: 150px;
         }
@@ -78,10 +143,7 @@
     }
   }
 
-
-
-
-  &__istyping{
+  &__istyping {
     span {
       height: 8px;
       width: 8px;

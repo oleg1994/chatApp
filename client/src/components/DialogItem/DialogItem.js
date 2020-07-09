@@ -1,31 +1,27 @@
 import React from 'react'
+import { Avatar } from '../ComponentsExports'
 import './DialogItem.scss'
 import classNames from 'classnames'
 
-const checkAvatar = (avatar) => {
-    if (avatar) {
-        return <img src={avatar} alt="" />
-    } else {
-        // create circle with first letter of the name
-    }
-}
 
 
-const DialogItem = ({ user, message, unread }) => {
+
+const DialogItem = ({ messageData, unread }) => {
+    console.log(messageData.user.fullname)
     return (
-        <div className={classNames('dialogs__item', { 'dialogs__item--online': user.isOnline })} >
+        <div className={classNames('dialogs__item', { 'dialogs__item--online': messageData.user.isOnline })} >
             <div className="dialogs__item-avatar">
-                {checkAvatar('https://api.adorable.io/avatars/285x')}
+                <Avatar imgSrc={''} name={messageData.user.fullname} />
             </div>
             <div className="dialogs__item-info">
                 <div className="dialogs__item-info-top">
-                    <b>{user.fullname}</b>
-                    <span>13:33 time</span>
+                    <b>{messageData.user.fullname}</b>
+                    <span>{messageData.created_at}</span>
                 </div>
                 <div className="dialogs__item-info-bottom">
-                    <p>На следующей неделе беру отпуск и с ПН начинаем разрабатывать.</p>
+                    <p>{messageData.text}</p>
                     {unread > 0 && <div className="dialogs__item-info-bottom-unreadCount">
-                        {unread > 9 ? '9+':unread}
+                        {unread > 9 ? '9+' : unread}
                     </div>
                     }
                 </div>

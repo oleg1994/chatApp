@@ -1,12 +1,20 @@
 @import '~antd/dist/antd.css';
+@import './layouts/chat.scss';
 
 body, html, #root, .wrapper{
   height: 100%;
-  box-sizing: border-box;
   --pColor:#ADADAD;
   --black:#202020;
+  background-color: #f4f7fd;
+
 }
 
+
+
+
+*{
+  outline: none;
+}
 
 // .App {
 //   text-align: center;
